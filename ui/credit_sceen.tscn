@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/icon.png" type="Texture" id=1]
+[ext_resource path="res://ui/credit_sceen.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "ScrollDown"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("VSeparator:margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 600.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VSeparator:margin_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 300.0, 0.0 ]
+}
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VSeparator"]
+margin_right = 1024.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Made By:"
+align = 1
+valign = 2
+
+[node name="Label2" type="Label" parent="VSeparator"]
+margin_top = 120.0
+margin_right = 1024.0
+margin_bottom = 237.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Shinra"
+align = 1
+
+[node name="Label3" type="Label" parent="VSeparator"]
+margin_top = 241.0
+margin_right = 1024.0
+margin_bottom = 358.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Made With:"
+align = 1
+valign = 2
+
+[node name="Label4" type="Label" parent="VSeparator"]
+margin_top = 362.0
+margin_right = 1024.0
+margin_bottom = 479.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Godot"
+align = 1
+
+[node name="TextureRect" type="TextureRect" parent="VSeparator"]
+margin_top = 483.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
+anims/ScrollDown = SubResource( 1 )
