@@ -1,0 +1,110 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/menu/local_screen.gd" type="Script" id=1]
+
+[node name="Local" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 30.0
+margin_bottom = -357.0
+rect_pivot_offset = Vector2( 172.834, 54.5125 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IPLabel" type="Label" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "IP Address"
+align = 1
+
+[node name="IPEdit" type="TextEdit" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 1024.0
+margin_bottom = 185.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+readonly = true
+
+[node name="IsLocalCheckBox" type="CheckBox" parent="VBoxContainer"]
+margin_top = 189.0
+margin_right = 1024.0
+margin_bottom = 213.0
+text = "Make game visible on local network?"
+
+[node name="PortLabel" type="Label" parent="VBoxContainer"]
+visible = false
+margin_top = 199.0
+margin_right = 1024.0
+margin_bottom = 213.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Port"
+align = 1
+
+[node name="PortEdit" type="TextEdit" parent="VBoxContainer"]
+visible = false
+margin_top = 140.0
+margin_right = 1024.0
+margin_bottom = 213.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="IsHostCheckBox" type="CheckBox" parent="VBoxContainer"]
+visible = false
+margin_top = 189.0
+margin_right = 1024.0
+margin_bottom = 213.0
+text = "Is Host?"
+
+[node name="HostIPLabel" type="Label" parent="VBoxContainer"]
+visible = false
+margin_top = 199.0
+margin_right = 1024.0
+margin_bottom = 213.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Host's IP Address"
+align = 1
+
+[node name="HostIPTextEdit" type="TextEdit" parent="VBoxContainer"]
+visible = false
+margin_top = 181.0
+margin_right = 1024.0
+margin_bottom = 213.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackButton" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+margin_right = 42.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ContinueButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -69.0
+margin_top = -20.0
+text = "Continue"
+
+[connection signal="button_down" from="VBoxContainer/IsLocalCheckBox" to="." method="_on_IsLocalCheckBox_button_down"]
+[connection signal="button_down" from="VBoxContainer/IsHostCheckBox" to="." method="_on_IsHostCheckBox_button_down"]
+[connection signal="button_down" from="BackButton" to="." method="_on_BackButton_button_down"]
+[connection signal="button_down" from="ContinueButton" to="." method="_on_ContinueButton_button_down"]
