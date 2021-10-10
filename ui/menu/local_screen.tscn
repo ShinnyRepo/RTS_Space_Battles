@@ -60,12 +60,21 @@ margin_bottom = 213.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="InvalidPortLabel" type="Label" parent="VBoxContainer"]
+visible = false
+margin_top = 199.0
+margin_right = 1024.0
+margin_bottom = 213.0
+text = "Invalid Port Address."
+align = 1
+
 [node name="IsHostCheckBox" type="CheckBox" parent="VBoxContainer"]
 visible = false
 margin_top = 189.0
 margin_right = 1024.0
 margin_bottom = 213.0
-text = "Is Host?"
+pressed = true
+text = "Host the game?"
 
 [node name="HostIPLabel" type="Label" parent="VBoxContainer"]
 visible = false
@@ -79,11 +88,20 @@ align = 1
 
 [node name="HostIPTextEdit" type="TextEdit" parent="VBoxContainer"]
 visible = false
-margin_top = 181.0
+margin_top = 131.0
 margin_right = 1024.0
 margin_bottom = 213.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="InvalidHostIPLabel" type="Label" parent="VBoxContainer"]
+visible = false
+margin_top = 199.0
+margin_right = 1024.0
+margin_bottom = 213.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Invalid Host's IP Address."
+align = 1
 
 [node name="BackButton" type="Button" parent="."]
 anchor_top = 1.0
@@ -105,6 +123,8 @@ margin_top = -20.0
 text = "Continue"
 
 [connection signal="button_down" from="VBoxContainer/IsLocalCheckBox" to="." method="_on_IsLocalCheckBox_button_down"]
+[connection signal="text_changed" from="VBoxContainer/PortEdit" to="." method="_on_PortEdit_text_changed"]
 [connection signal="button_down" from="VBoxContainer/IsHostCheckBox" to="." method="_on_IsHostCheckBox_button_down"]
+[connection signal="text_changed" from="VBoxContainer/HostIPTextEdit" to="." method="_on_HostIPTextEdit_text_changed"]
 [connection signal="button_down" from="BackButton" to="." method="_on_BackButton_button_down"]
 [connection signal="button_down" from="ContinueButton" to="." method="_on_ContinueButton_button_down"]

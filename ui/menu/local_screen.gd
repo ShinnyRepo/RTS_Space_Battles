@@ -1,37 +1,64 @@
 extends Control
 
-var parent:Node
-var net_Params
-
+onready var ipAddressTextEdit:TextEdit = $VBoxContainer/IPEdit
 onready var localCheck:CheckBox = $VBoxContainer/IsHostCheckBox
-onready var isHostCheck:CheckBox = $VBoxContainer/IsHostCheckBox
+onready var hostCheck:CheckBox = $VBoxContainer/IsHostCheckBox
 onready var hostIPLabel:Label = $VBoxContainer/HostIPLabel
 onready var hostIPTextEdit:TextEdit = $VBoxContainer/HostIPTextEdit
 onready var portLabel:Label = $VBoxContainer/PortLabel
 onready var portTextEdit:TextEdit = $VBoxContainer/PortEdit
+onready var invalidHostIPLabel:Label = $VBoxContainer/InvalidHostIPLabel
+onready var invalidPortLabel:Label = $VBoxContainer/InvalidPortLabel
 
-func setup(parent:Node):
-	self.parent = parent
-	var net_Params_Resource:GDScript = load("res://scripts/network_params.gd")
-	net_Params = net_Params_Resource.new()
+var parent:Node
+var net:Network
+
+func setup(caller:Node):
+	self.parent = caller
+	net = Network.new()
+	ipAddressTextEdit.text = net.get_local_ip_address()
+	portTextEdit.text = net.get_default_port()
 
 func _on_BackButton_button_down():
 	parent.change_current_scene(Global.Scene.MENU)
 
 func _on_ContinueButton_button_down():
-	net_Params.HostIP = hostIPTextEdit.text
-	net_Params.Port = portTextEdit.text
-	net_Params.Parent_Scene = parent
+	net.IP_Address = ipAddressTextEdit.text
+	net.Port = int(portTextEdit.text)
+	net.Host_IP_Address = hostIPTextEdit.text
 	
-	parent.change_current_scene(Global.Scene.GAME, net_Params)
+	if !localCheck.pressed:
+		#TODO: pass single player network
+		parent.change_current_scene(Global.Scene.GAME, net)
+	if net.Host_IP_Address.is_valid_ip_address():
+		invalidHostIPLabel.visible = true
+	if net.Port > 65535 || net.Port <= 1024:
+		invalidPortLabel.visible = true
+	else:
+		invalidHostIPLabel.visible = false
+		
+		if hostCheck.pressed:
+			parent.change_current_scene(Global.Scene.GAME, net)
+		else:
+		#TODO: if host continue
+		#otherwise must connect into the host before
+		#moving forward
+			pass
 
 func _on_IsLocalCheckBox_button_down():
-	var islocalChecked = localCheck.toggle_mode
-	isHostCheck.visible = islocalChecked
-	portLabel.visible = islocalChecked
-	portTextEdit.visible = islocalChecked
+	hostCheck.visible = !hostCheck.visible
+	portLabel.visible = !portLabel.visible
+	portTextEdit.visible = !portTextEdit.visible
+	
+	if (!hostCheck.pressed):
+		_on_IsHostCheckBox_button_down()
 
 func _on_IsHostCheckBox_button_down():
-	var isToggled = isHostCheck.toggle_mode
-	hostIPLabel.visible = isToggled
-	hostIPTextEdit.visible = isToggled
+	hostIPLabel.visible = !hostIPLabel.visible
+	hostIPTextEdit.visible = !hostIPTextEdit.visible
+
+func _on_HostIPTextEdit_text_changed():
+	invalidHostIPLabel.visible = false
+
+func _on_PortEdit_text_changed():
+	invalidPortLabel.visible = false

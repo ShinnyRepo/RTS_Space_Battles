@@ -4,7 +4,7 @@ var current_scene
 
 func _ready():
 	#Change Scene here to default to a new window
-	change_current_scene(Global.Scene.MENU)
+	change_current_scene(Global.Scene.SPLASH)
 
 func change_current_scene(scene:int, params=null):
 	current_scene = scene
@@ -35,7 +35,7 @@ func _change_scene(scene_resource:Resource, params=null):
 	$CanvasLayer.add_child(new_scene)
 	if new_scene.has_method("setup"):
 		if params:
-			new_scene.setup(params)
+			new_scene.setup(self, params)
 		else:
 			new_scene.setup(self)
 	if old_scene:

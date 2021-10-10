@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Reference",
+"class": "Network",
+"language": "GDScript",
+"path": "res://scripts/Network.gd"
+} ]
+_global_script_class_icons={
+"Network": ""
+}
+
 [application]
 
 config/name="RTS_Space_Battles"
