@@ -27,18 +27,19 @@ func _on_ContinueButton_button_down():
 	net.Port = int(portTextEdit.text)
 	net.Host_IP_Address = hostIPTextEdit.text
 	
-	if !localCheck.pressed:
+	if localCheck.pressed:
 		#TODO: pass single player network
-		parent.change_current_scene(Global.Scene.GAME, net)
-	if net.Host_IP_Address.is_valid_ip_address():
+		var params = [Global.Scene.LOCAL, net]
+		parent.change_current_scene(Global.Scene.LOBBY, params)
+	elif net.Host_IP_Address.is_valid_ip_address():
 		invalidHostIPLabel.visible = true
-	if net.Port > 65535 || net.Port <= 1024:
+	elif net.Port > 65535 || net.Port <= 1024:
 		invalidPortLabel.visible = true
 	else:
 		invalidHostIPLabel.visible = false
 		
 		if hostCheck.pressed:
-			parent.change_current_scene(Global.Scene.GAME, net)
+			parent.change_current_scene(Global.Scene.LOBBY, net)
 		else:
 		#TODO: if host continue
 		#otherwise must connect into the host before

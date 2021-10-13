@@ -1,3 +1,3 @@
 extends Node
 
-enum Scene {QUIT, SPLASH, MENU, CREDIT, LOBBY, CUSTOM, GAME}
+enum Scene {QUIT, SPLASH, CREDIT, MENU, LOCAL, MATCH, LOBBY, GAME}

@@ -11,9 +11,10 @@ func get_local_ip_address()->String:
 	for ad in addresses:
 		var local:String = ad
 		if local.left(3) == "192":
-			address = ad
+			address = local
 
 	return address
 
 func get_default_port()->String:
 	return "10864"
+

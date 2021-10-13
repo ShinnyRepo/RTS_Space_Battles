@@ -6,10 +6,10 @@ func setup(parent:Node):
 	self.parent = parent
 
 func _on_CustomButton_button_down():
-	parent.change_current_scene(Global.Scene.CUSTOM)
+	parent.change_current_scene(Global.Scene.LOCAL)
 
 func _on_MultiplayerButton_button_down():
-	parent.change_current_scene(Global.Scene.LOBBY)
+	parent.change_current_scene(Global.Scene.MATCH)
 
 func _on_CreditsButton_button_down():
 	parent.change_current_scene(Global.Scene.CREDIT)
