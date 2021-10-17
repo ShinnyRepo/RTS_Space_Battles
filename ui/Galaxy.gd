@@ -32,6 +32,7 @@ func load_game():
 	var con_ship = settings.starting_ship.instance()
 	con_ship.setup(space)
 	entities.add_child(con_ship)
+	con_ship.translation = Vector3(settings.starting_pos.x, 0, settings.starting_pos.y)
 
 	print("loading hud")
 	var cam_resource = load("res://ui/HUD.tscn")

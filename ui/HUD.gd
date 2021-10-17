@@ -85,8 +85,10 @@ func raycast_from_mouse(m_pos, collision_mask):
 func get_item_at_mouse(m_pos, collision_mask):
 	var item = raycast_from_mouse(m_pos, collision_mask)
 	if item:
-		current_unit = item.get("collider") 
-		return current_unit
+		var col = item.get("collider")
+		if col.is_in_group("ship"):
+			current_unit = col
+		return col
 	else:
 		current_unit = null
 
