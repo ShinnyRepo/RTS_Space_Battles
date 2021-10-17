@@ -2,10 +2,10 @@ extends Spatial
 
 const MAX_ZOOM_IN = 5
 #world map gets unloaded after zooming out too far
-const MAX_ZOOM_OUT = 65 
+const MAX_ZOOM_OUT = 95 
 const MOVE_MARGIN = 20
 const MOVE_SPEED = 40
-const RAY_LENGTH = MAX_ZOOM_IN + MAX_ZOOM_OUT
+const RAY_LENGTH = (MAX_ZOOM_IN + MAX_ZOOM_OUT) * 3
 
 onready var cam = $Camera
 
@@ -45,7 +45,7 @@ func _unhandled_input(event:InputEvent):
 			get_item_at_mouse(m_pos, 6)
 			select_current_unit()
 		if event.is_action_pressed("action"):
-			var item = raycast_from_mouse(m_pos, 7)
+			var item = raycast_from_mouse(m_pos, 8)
 			if item:
 				move_current_unit(item.position)
 		if event.is_action_pressed("zoom_in"):
@@ -83,7 +83,7 @@ func raycast_from_mouse(m_pos, collision_mask):
 	return space_state.intersect_ray(ray_start, ray_end, [], collision_mask)
 
 func get_item_at_mouse(m_pos, collision_mask):
-	var item = raycast_from_mouse(m_pos, 6)
+	var item = raycast_from_mouse(m_pos, collision_mask)
 	if item:
 		current_unit = item.get("collider") 
 		return current_unit

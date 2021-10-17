@@ -10,11 +10,17 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "Galaxy_Settings",
+"language": "GDScript",
+"path": "res://scripts/galaxy_settings.gd"
+}, {
+"base": "Reference",
 "class": "Network",
 "language": "GDScript",
 "path": "res://scripts/Network.gd"
 } ]
 _global_script_class_icons={
+"Galaxy_Settings": "",
 "Network": ""
 }
 
@@ -56,6 +62,7 @@ zoom_out={
 3d_physics/layer_1="enviroment"
 3d_physics/layer_2="stations"
 3d_physics/layer_3="units"
+3d_physics/layer_4="camera"
 
 [physics]
 
