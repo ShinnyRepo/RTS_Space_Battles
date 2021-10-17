@@ -2,8 +2,8 @@ extends Control
 
 var parent:Node
 
-func setup(parent:Node):
-	self.parent = parent
+func setup(control:Node):
+	parent = control
 
 func _on_CustomButton_button_down():
 	parent.change_current_scene(Global.Scene.LOCAL)
