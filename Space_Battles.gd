@@ -6,7 +6,7 @@ var current_scene
 
 func _ready():
 	#Change Scene here to default to a new window
-	change_current_scene(Global.Scene.SPLASH)
+	change_current_scene(Global.Scene.LOCAL)
 
 func change_current_scene(scene:int, params=null):
 	current_scene = scene

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/Galaxy.gd" type="Script" id=1]
+[ext_resource path="res://resources/nebula.tres" type="Environment" id=2]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -15,31 +16,31 @@ size = Vector3( 30, 1, 30 )
 [node name="Galaxy" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="World" type="Node" parent="."]
+[node name="Space" type="Spatial" parent="."]
 
-[node name="RigidBody" type="RigidBody" parent="World"]
+[node name="RigidBody" type="RigidBody" parent="Space"]
 
-[node name="CollisionShape" type="CollisionShape" parent="World/RigidBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Space/RigidBody"]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="World/RigidBody"]
+[node name="MeshInstance" type="MeshInstance" parent="Space/RigidBody"]
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="World"]
+[node name="StaticBody" type="StaticBody" parent="Space"]
 
-[node name="CollisionShape" type="CollisionShape" parent="World/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Space/StaticBody"]
 transform = Transform( 30, 0, 0, 0, 1, 0, 0, 0, 20, 0, -4, 0 )
 shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="World/StaticBody"]
+[node name="MeshInstance" type="MeshInstance" parent="Space/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0 )
 mesh = SubResource( 4 )
 material/0 = null
 
-[node name="Stations" type="Node" parent="."]
+[node name="Stations" type="Spatial" parent="."]
 
-[node name="Entities" type="Node" parent="."]
+[node name="Entities" type="Spatial" parent="."]
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.798163, 0.602442, 0, -0.602442, 0.798163, 0, 3.55971, 3.40982 )
+[node name="SpaceEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 2 )
