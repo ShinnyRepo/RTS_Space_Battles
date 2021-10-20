@@ -24,9 +24,24 @@ func load_game():
 	environment.environment = settings.space_env
 
 	print("loading world")
+	var children = space.get_children()
+	var first_child = space.get_child(0)
+
+	for child in children:
+		if child != first_child:
+			space.remove_child(child)
+
+	first_child.free()
 	var base = settings.galaxy_map.instance()
-	space.add_child(base)
-	space.move_child(base, 0)
+	galaxy.remove_child(space)
+	galaxy.add_child(base)
+	galaxy.move_child(base, 0)
+	
+	for child in children:
+		base.add_child(child)
+	
+	space.free()
+	space = base.get_child(0)
 
 	print("loading stations")
 	var con_ship = settings.starting_ship.instance()

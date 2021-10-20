@@ -25,7 +25,7 @@ func _on_LaunchButton_button_down():
 	if true:
 		settings.map_size = Vector2(500, 500)
 		settings.starting_pos = Vector2(0, 0)
-		settings.galaxy_map = load("res://maps/Base_Map.tscn")
+		settings.galaxy_map = load("res://maps/default.tscn")
 		settings.space_env = load("res://resources/nebula.tres")
 		settings.starting_ship = load("res://ships/construction.tscn")
 	
