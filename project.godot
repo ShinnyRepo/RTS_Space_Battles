@@ -60,7 +60,7 @@ zoom_out={
 
 [layer_names]
 
-3d_physics/layer_1="enviroment"
+3d_physics/layer_1="environment"
 3d_physics/layer_2="stations"
 3d_physics/layer_3="units"
 3d_physics/layer_4="camera"

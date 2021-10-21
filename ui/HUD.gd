@@ -9,10 +9,12 @@ const RAY_LENGTH = (MAX_ZOOM_IN + MAX_ZOOM_OUT) * 3
 
 onready var cam = $Camera
 
+signal hud_command(action, units, option)
+
 var xzMax:Vector2
 var xzMin:Vector2
 
-var current_unit
+var selected_units:Array = []
 
 func setup(xzmax:Vector2, xzmin:Vector2, starting_pos:Vector2):
 	xzMax = xzmax
@@ -43,11 +45,10 @@ func _unhandled_input(event:InputEvent):
 
 		if event.is_action_pressed("select"):
 			get_item_at_mouse(m_pos, 6)
-			select_current_unit()
 		if event.is_action_pressed("action"):
-			var item = raycast_from_mouse(m_pos, 8)
+			var item = raycast_from_mouse(m_pos, 14)
 			if item:
-				move_current_unit(item.position)
+				move_units_towards_target(item.collider, item.position)
 		if event.is_action_pressed("zoom_in"):
 			cam.translation.z = max(cam.translation.z-5, MAX_ZOOM_IN)
 		if event.is_action_pressed("zoom_out"):
@@ -85,18 +86,29 @@ func raycast_from_mouse(m_pos, collision_mask):
 func get_item_at_mouse(m_pos, collision_mask):
 	var item = raycast_from_mouse(m_pos, collision_mask)
 	if item:
-		var col = item.get("collider")
-		if col.is_in_group("ship"):
-			current_unit = col
+		var col = item.collider
+		if col.collision_mask & Global.Layers.UNITS != 0:
+			selected_units.clear()
+			selected_units.append(col)
 		return col
 	else:
-		current_unit = null
+		selected_units.clear()
 
-func select_current_unit():
-	if current_unit:
-		current_unit.select()
+func move_units_towards_target(target, pos):
+	pos.y = 0
+	if selected_units.size() > 0:
+		if target.collision_mask & (Global.Layers.STATIONS | Global.Layers.UNITS) != 0:
+			var attacking_units:Array = []
+			var moving_units:Array = []
 
-func move_current_unit(pos):
-	if current_unit:
-		pos.y = 0
-		current_unit.move_to(pos)
+			for unit in selected_units:
+				if unit.has_method("attack"):
+					attacking_units.append(unit)
+				else:
+					moving_units.append(unit)
+
+			if attacking_units.size() > 0:
+				emit_signal("hud_command", Global.Action.Attack, attacking_units, target)
+			emit_signal("hud_command", Global.Action.Move, moving_units, pos)
+		else:
+			emit_signal("hud_command", Global.Action.Move, selected_units, pos)
