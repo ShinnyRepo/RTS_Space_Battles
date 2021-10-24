@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/rocket_fuelB.obj-576e85869c4b40f0f7a5da8aa029731c.mesh"
+
+[deps]
+
+files=[ "res://.import/rocket_fuelB.obj-576e85869c4b40f0f7a5da8aa029731c.mesh" ]
+
+source_file="res://assets/obj_models/rocket_fuelB.obj"
+dest_files=[ "res://.import/rocket_fuelB.obj-576e85869c4b40f0f7a5da8aa029731c.mesh", "res://.import/rocket_fuelB.obj-576e85869c4b40f0f7a5da8aa029731c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

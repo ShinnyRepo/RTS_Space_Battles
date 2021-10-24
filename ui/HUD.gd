@@ -2,7 +2,7 @@ extends Spatial
 
 const MAX_ZOOM_IN = 5
 #world map gets unloaded after zooming out too far
-const MAX_ZOOM_OUT = 95 
+const MAX_ZOOM_OUT = 60 
 const MOVE_MARGIN = 20
 const MOVE_SPEED = 40
 const RAY_LENGTH = (MAX_ZOOM_IN + MAX_ZOOM_OUT) * 3
@@ -11,8 +11,8 @@ onready var cam = $Camera
 
 signal hud_command(action, units, option)
 
-var xzMax:Vector2
-var xzMin:Vector2
+var xzMax:Vector2 = Vector2(500,500)
+var xzMin:Vector2 = Vector2(500,500)
 
 var selected_units:Array = []
 

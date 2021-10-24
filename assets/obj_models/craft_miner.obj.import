@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/craft_miner.obj-9b5e33f0a05cfe4d90d23ecf5a0a16fd.mesh"
+
+[deps]
+
+files=[ "res://.import/craft_miner.obj-9b5e33f0a05cfe4d90d23ecf5a0a16fd.mesh" ]
+
+source_file="res://assets/obj_models/craft_miner.obj"
+dest_files=[ "res://.import/craft_miner.obj-9b5e33f0a05cfe4d90d23ecf5a0a16fd.mesh", "res://.import/craft_miner.obj-9b5e33f0a05cfe4d90d23ecf5a0a16fd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
